@@ -45,7 +45,8 @@
 	height: 70%;
 	padding: 50px;
 	box-shadow: 0 2px 5px #000;
-}	  
+}
+/* CSS pour le formulaire */	  
 form {
 	display: flex;
 	justify-content: center;
@@ -70,4 +71,50 @@ input[type="submit"] {
 	width: 100%;
 	background-color: #D8D8D8;
 	border-radius: 0;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+/* HEADER ET FOOTER */
+.header {
+	padding: 50px 80px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.menu-footer-menu-container .menu {
+	justify-content: center;
+	padding: 20px;
+	border-top: solid 3px #D8D8D8;
+}
+#menu-footer-menu li, #menu-header-menu li {
+	list-style: none;
+}
+#menu-footer-menu li {
+	margin-left: 80px;
+}
+.header .logo {
+	width: 65%;
+}
+.menu {
+	display: flex;
+	flex-wrap: wrap;
+}
+#menu-header-menu li {
+	margin-left: 25px;
+}
+.menu li a {
+	text-decoration: none;
+	color: black;
+}
+/*HERO HEADER*/
+.hero-header {
+	max-width: 1600px;
+	height: auto;
+}
+.hero-header img {
+	width: 100%;
+	object-fit: fill;
 }

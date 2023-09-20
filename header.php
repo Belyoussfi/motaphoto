@@ -8,9 +8,10 @@
 </head>
 <body>
   
-  <header class="header">
+  <header>
+    <div class="header">
     <a href="<?php echo home_url( '/' ); ?>">
-      <img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo">
+      <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo">
     </a>  
 
     <?php wp_nav_menu( array( 'theme_location' => 'main' ) ); ?>
@@ -25,6 +26,7 @@
         </div>
       </div>
     </div>  
+    </div>
   </header> 
  
 
