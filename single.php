@@ -9,42 +9,57 @@
  * @since Twenty Twenty-One 1.0
  */
 
-get_header();
+get_header(); ?>
 
-/* Start the Loop */
-while ( have_posts() ) :
-	the_post();
+<pre>
+<?php 
+$terms = get_the_terms(get_the_ID(), 'categorie');
+$format = get_the_terms(get_the_ID(), 'format');
+?>
+</pre>
 
-	get_template_part( 'template-parts/content/content-single' );
 
-	if ( is_attachment() ) {
-		// Parent post navigation.
-		the_post_navigation(
-			array(
-				/* translators: %s: Parent post link. */
-				'prev_text' => sprintf( __( '<span class="meta-nav">Published in</span><span class="post-title">%s</span>', 'twentytwentyone' ), '%title' ),
-			)
-		);
-	}
 
-	// If comments are open or there is at least one comment, load up the comment template.
-	if ( comments_open() || get_comments_number() ) {
-		comments_template();
-	}
+<section>
+    <div>
+        <h2><?php echo the_title(); ?></h2>
+        <ul>
+            <li>Référence: <?php the_field('référence', get_the_ID() ); ?></li>
+            <li>Catégorie: <?php echo ($terms[0]->name)  ?></li>
+            <li>Format: <?php echo ($format[0]->name)  ?></li>
+            <li>Type: <?php the_field('type', get_the_ID() ); ?></li>
+            <li>Année: <?php echo get_the_date( 'Y',) ?></li>
+        </ul>
+        <div>
+            <p><?php the_post_thumbnail('medium'); ?></p>
+        </div>
+    </div>
 
-	// Previous/next post navigation.
-	$twentytwentyone_next = is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' );
-	$twentytwentyone_prev = is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' );
+    <section>
+        <?php wpb_posts_nav(); ?>
+    </section>
 
-	$twentytwentyone_next_label     = esc_html__( 'Next post', 'twentytwentyone' );
-	$twentytwentyone_previous_label = esc_html__( 'Previous post', 'twentytwentyone' );
+   
 
-	the_post_navigation(
-		array(
-			'next_text' => '<p class="meta-nav">' . $twentytwentyone_next_label . $twentytwentyone_next . '</p><p class="post-title">%title</p>',
-			'prev_text' => '<p class="meta-nav">' . $twentytwentyone_prev . $twentytwentyone_previous_label . '</p><p class="post-title">%title</p>',
-		)
-	);
-endwhile; // End of the loop.
 
-get_footer();
+
+    <section>
+        <p>Cette photo vous intéresse ?</p>
+        <div id="myModal" class="popup modal">
+            <!-- Modal content -->
+            <div class="content modal-content animate-top">
+                <span class="x" id="x">&times;</span>
+                <div id="container">
+                    <?php echo do_shortcode( '[contact-form-7 id="0e13fe9" title="Formulaire de contact 1"]' ); ?>
+                </div>
+            </div>
+        </div> 
+        <p><button class="click">CONTACT</button></p> 
+    </section>
+</section>    
+
+<div><?php example_cats_related_post() ?></div>
+
+   
+<?php get_footer(); ?>
+

@@ -72,8 +72,7 @@ input[type="submit"] {
 	background-color: #D8D8D8;
 	border-radius: 0;
 }
-
-* {
+body {
 	margin: 0;
 	padding: 0;
 }
@@ -108,13 +107,100 @@ input[type="submit"] {
 .menu li a {
 	text-decoration: none;
 	color: black;
+	font-family: monospace;
+	font-size: 1.5em;
+	font-weight: 400;
 }
 /*HERO HEADER*/
 .hero-header {
 	max-width: 1600px;
-	height: auto;
+	height: 650px;
 }
 .hero-header img {
 	width: 100%;
-	object-fit: fill;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 50%;
 }
+
+
+.lightbox {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 10;
+	transition: opacity 0.3s;
+}
+
+.lightbox_next, .lightbox_prev {
+	width: 45px;
+	height: 45px;
+	top: 50%;
+	margin-top: -14px;
+	z-index: 11;
+	right: 0;
+	position: fixed;
+	background: url(../img/arrow.svg) center center / 100% 100%;
+	border: none;
+}
+
+.lightbox_prev {
+	right: auto;
+	left: 0;
+	transform: rotate(180deg);
+}
+
+.lightbox_close {
+	font-size: 25px;
+	top: 20px;
+	right: 20px;
+	position: fixed;
+	color: white;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 12;
+}
+
+.lightbox button {
+	cursor: pointer;
+}
+
+.lightbox_container img {
+	max-width: 100%;
+	height: auto;
+}
+
+.lightbox_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.ecran {
+	left: 150px;
+	opacity: 1 !important;
+}
+
+.oeil {
+	left: 70px;
+}
+.oeil, .ecran {
+	border: solid red 2px;
+	position: absolute;
+    opacity: 0;
+	transition: all 0.8s ease-in-out;
+}
+
+a:hover > .oeil, a:hover > .ecran {
+	opacity: 1;
+}
+
+.lightbox .fadeOut {
+	opacity: 0;
+}
+
