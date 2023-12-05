@@ -1,9 +1,7 @@
-main, .header {
-	/*margin: 50px 80px;*/
+ .header, main {
+	margin: auto;
+	padding: 20px;
 	width: 1440px;
-	border: solid blue 2px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 /*Création de la popup*/
@@ -80,20 +78,10 @@ input[type="submit"] {
 	background-color: #D8D8D8;
 	border-radius: 0;
 }
-body {
-	margin: 0;
-	padding: 0;
-}
-/* HEADER ET FOOTER 
-.header {
-	padding: 50px;
-} test a supprimer */
-/*.header, */ .js-filter /* pour centrer filtres */{
-	display: flex;
-	justify-content: space-between;
-    align-items: center; 
-}
+
+/* HEADER ET FOOTER */
 .menu-footer-menu-container .menu {
+	display: flex;
 	justify-content: center;
 	padding: 20px;
 	border-top: solid 1px #000000;
@@ -107,12 +95,6 @@ body {
 .header .logo {
 	width: 45%;
 }
-/*
-.menu {
-	display: flex;
-	flex-wrap: wrap; 
-}*/ 
-
 #menu-header-menu li {
 	margin-left: 25px;
 }
@@ -136,6 +118,11 @@ body {
 }
 /*CSS POUR 3 FILTRES */
 .js-filter {
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+}	
+.js-filter {
 	margin-top: 2em;
 }
 .js-filter select {
@@ -152,16 +139,18 @@ body {
 	margin-right: 50px;
 }
 /* CSS IMAGES */
-.cxc-posts{
+#cxc-posts{
     display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
+	justify-content: space-between;
 	margin-top: 2.3em;
+	
 }
 .cxc-inner-wrapper {
 	margin-bottom: 1.5em;
-	width: 700px;
-	/*position: relative;*/
+	width: 710px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /* CHANGER LE BG DU LOAD MORE BUTTON CAR AUCUNE IMG A CHARGER */
@@ -264,7 +253,7 @@ button {
 	z-index: 12;
 }
 
-.lightbox button {
+.lightbox button, .click {
 	cursor: pointer;
 }
 
@@ -518,7 +507,7 @@ a:hover > .oeil, a:hover > .ecran, a:hover > .category, a:hover > .title  {
 	position: relative;
 }
 
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (min-width: 414px) and (max-width: 768px) {
 	.menu-header-menu-container {
 		position: absolute;
 		width: 100%;
@@ -540,6 +529,9 @@ a:hover > .oeil, a:hover > .ecran, a:hover > .category, a:hover > .title  {
 	.menu-header-menu-container li {
 		text-align: center;
 		width: 100%;
+	}
+	.header, main {
+		width: auto;
 	}
 	
 	/*#menu-header-menu {

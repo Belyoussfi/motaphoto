@@ -43,7 +43,7 @@ get_header();
 
 <!-- PUBLICATION TOUS LES POSTS -->
 <div class="cxc-post-wrapper">
-	<div id="cxc-posts" class="cxc-posts">
+    <div id="cxc-posts" class="cxc-posts">
 		<?php
 		$postsPerPage = 12;
 		$args = array(
