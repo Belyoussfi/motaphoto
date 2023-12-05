@@ -1,6 +1,6 @@
 jQuery( document ).ready( function($){
 
-	var posts_per_page = 4; 
+	var posts_per_page = 12; 
 
 	function cxc_load_more_posts( cxc_this, pageNumber ){
 		var page_count = 0;
@@ -21,6 +21,7 @@ jQuery( document ).ready( function($){
 							page_count = parseInt(pageNumber) + parseInt(1);
 							cxc_this.attr('data-page', page_count);
                             cxc_this.parents('.cxc-post-wrapper').find(".cxc-posts").append(json_html.html);
+							lightboxInit(); // LIGHTBOX ACTIVE SUR LES IMG LORS DU CLICK LOAD MORE 
 						} else {
 							cxc_this.attr("disabled",true);
 							cxc_this.addClass('cxc-disabled');
@@ -42,29 +43,7 @@ jQuery( document ).ready( function($){
 
 });
 
-
-// FILTRES TEST 1
-jQuery(function($){
-	$('#filter').submit(function(){
-		var filter = $('#filter');
-		$.ajax({
-			url:filter.attr('action'),
-			data:filter.serialize(), // form data
-			type:filter.attr('method'), // POST
-			beforeSend:function(xhr){
-				filter.find('button').text('Processing...'); // changing the button label
-			},
-			success:function(data){
-				filter.find('button').text('Apply filter'); // changing the button label back
-				$('#response').html(data); // insert data
-			}
-		});
-		return false;
-	});
-});
-
-
-// TEST FILTRES 2
+// FILTRES PAR CATEGORIE / FORMAT / DATE
 jQuery(function($){
 	$('.js-filter select').on('change', function () {
 		let cat = $('#cat').val()
@@ -82,6 +61,7 @@ jQuery(function($){
 			data: data,
 			success: function(response) {
 				$('.cxc-posts').html(response);
+				lightboxInit(); // LIGHTBOX ACTIVE SUR LES IMG LORS DU CLICK LOAD MORE
 
 			}
 		})

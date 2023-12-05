@@ -1,3 +1,4 @@
+<?php /* Template Name: CustomAccueil */ ?>
 <?php 
 
 get_header(); 
@@ -10,14 +11,10 @@ get_header();
       </a>
 </div>
 
-	
-
 <main>
-
-
-<!-- TEST FILTRES 2 -->
-
+<!-- FILTRES -->
 <div class="js-filter">
+	<div class="box-filter">
 	<?php $terms = get_terms(['taxonomy' => 'categorie']);
 	if ($terms) : ?>
         <select id="cat" name="cat">
@@ -36,17 +33,13 @@ get_header();
 			<?php endforeach; ?>
 		</select>
 	<?php endif; ?>
+	</div>
 	<select id="date" name="date">
-	    <option>TRIER PAR</option>
+	    <option>Trier par</option>
 		<option value="ASC">Plus anciens aux plus récents</option>
 		<option value="DESC">Plus récents aux plus anciens</option>
 	</select> 
 </div>
-
-
-
-
-
 
 <!-- PUBLICATION TOUS LES POSTS -->
 <div class="cxc-post-wrapper">
@@ -64,34 +57,55 @@ get_header();
 				$the_query->the_post();
 		?>
         <div class="cxc-inner-wrapper">
-            <p><a href="<?php the_permalink(); ?>"><img class="oeil" src="<?php echo get_template_directory_uri(); ?>/img/oeil.png" alt="image d'un oeil">
-			<img class="ecran" id="ecran" src="<?php echo get_template_directory_uri(); ?>/img/plein-ecran.png" alt="image d'un plein écran">
-			<span class="thumbnail-container" data-full-screen-image="<?php echo get_the_post_thumbnail_url(); ?>"><?php echo the_post_thumbnail('medium'); ?></span></a></p>
+            <div class="first-content">
+				<span class="thumbnail-container" data-full-screen-image="<?php echo the_post_thumbnail_url(''); ?>">
+					<?php echo the_post_thumbnail(); ?> 
+				</span>
+
+				<a class="image" href="<?php the_permalink(); ?>">
+				    <img class="oeil" src="<?php echo get_template_directory_uri(); ?>/img/eye.png" alt="image d'un oeil">
+
+				    <span class="title">
+						<?php echo the_title(); ?>
+					</span>
+
+				    <?php $terms = get_the_terms(get_the_ID(), 'categorie'); ?>
+
+				    <span class="category">
+						<?php echo ($terms[0]->name); ?>
+					</span>	
+
+					<img class="ecran" src="<?php echo get_template_directory_uri(); ?>/img/plein-ecran.png" alt="image d'un plein écran">	
+			    </a>
+				
+			</div>	
         </div>
 		<div class="response"></div>
-		<?php
-    }
-}
+		<?php 
+    } 	
+} 
 wp_reset_postdata(); ?>
+
+    </div>
+
+	<button type="button" id="codex-load-more" class="codex-load-more button" data-page=2>Charger plus</button>
+	
 </div>
 
-<button type="button" id="codex-load-more" class="codex-load-more" data-page=2>Load More</button>
-</div>
 
-<!--LIGHTBOX -->
+
 <div class="lightbox" id="lightbox">
+   
 	<button class="lightbox_close">X</button>
-	<button class="lightbox_next"></button>
+	<button class="lightbox_next" id="lightbox_next"></button>
 	<button class="lightbox_prev"></button>
 	<div class="lightbox_container">
-		<img src="<?php echo the_post_thumbnail('medium'); ?>">
+	    <img id="lightbox-img" src="">
 	</div>
+	<div class="reference-field" data-value="test"></div>
+	<div class="category-field" data-value="test"></div>
+	
 </div>	
-
-
-
-                    
-          
 
 </main>    
 <?php get_footer(); 

@@ -18,47 +18,75 @@ $format = get_the_terms(get_the_ID(), 'format');
 ?>
 </pre>
 
+<section class="main_container">
+    <div class="presentation">
+    <ul class="single_title">
+            <li><?php echo the_title(); ?>
+                <ul>
+                    <li>Référence: <span class="reference"><?php the_field('référence', get_the_ID() ); ?></span></li>
+                    <li>Catégorie: <?php echo ($terms[0]->name)  ?></li>
+                    <li>Format: <?php echo ($format[0]->name)  ?></li>
+                    <li>Type: <?php the_field('type', get_the_ID() ); ?></li>
+                    <li>Année: <?php echo get_the_date( 'Y',) ?></li>
+                </ul>
+            </li> 
+        </ul>     
 
-
-<section>
-    <div>
-        <h2><?php echo the_title(); ?></h2>
-        <ul>
-            <li>Référence: <?php the_field('référence', get_the_ID() ); ?></li>
-            <li>Catégorie: <?php echo ($terms[0]->name)  ?></li>
-            <li>Format: <?php echo ($format[0]->name)  ?></li>
-            <li>Type: <?php the_field('type', get_the_ID() ); ?></li>
-            <li>Année: <?php echo get_the_date( 'Y',) ?></li>
-        </ul>
-        <div>
+        <div class="bloc_image">
             <p><?php the_post_thumbnail('medium'); ?></p>
         </div>
     </div>
 
-    <section>
-        <?php wpb_posts_nav(); ?>
+    <section class="second_container">
+        <section class="single_contact">
+            <p>Cette photo vous intéresse ?</p>
+            
+            <button class="click btn_contact">Contact</button>
+        </section>
+
+        <section class="navigation_image">
+            <div class="display_image"><?php wpb_posts_nav(); ?></div>
+            <div class="arrows">
+                <div>
+                    <strong>
+                        <svg class="left-arrow" viewBox="0 0 24 24" width="24" height="24"><path d="M13.775,18.707,8.482,13.414a2,2,0,0,1,0-2.828l5.293-5.293,1.414,1.414L9.9,12l5.293,5.293Z"/></svg>
+                    </strong>
+                </div>
+                <div>
+                    <strong>
+                        <svg class="right-arrow" viewBox="0 0 24 24" width="24" height="24"><path d="M10.811,18.707,9.4,17.293,14.689,12,9.4,6.707l1.415-1.414L16.1,10.586a2,2,0,0,1,0,2.828Z"/></svg>
+                    </strong>
+                </div>
+            </div>    
+        </section>
     </section>
 
+    <section class="post_related">
+        <span>VOUS AIMEREZ AUSSI</span>
+        <div class="last_container"><?php example_cats_related_post() ?></div>
+
+        <div class="lightbox" id="lightbox">
+   
+	<button class="lightbox_close">X</button>
+	<button class="lightbox_next" id="lightbox_next"></button>
+	<button class="lightbox_prev"></button>
+	<div class="lightbox_container">
+	    <img id="lightbox-img" src="">
+	</div>
+	
+</div>	
+       
+    </section>
+
+    <div class="btn_photos"><button class="btn_contact">Toutes les photos</button></div>
    
 
 
 
-    <section>
-        <p>Cette photo vous intéresse ?</p>
-        <div id="myModal" class="popup modal">
-            <!-- Modal content -->
-            <div class="content modal-content animate-top">
-                <span class="x" id="x">&times;</span>
-                <div id="container">
-                    <?php echo do_shortcode( '[contact-form-7 id="0e13fe9" title="Formulaire de contact 1"]' ); ?>
-                </div>
-            </div>
-        </div> 
-        <p><button class="click">CONTACT</button></p> 
-    </section>
+    
 </section>    
 
-<div><?php example_cats_related_post() ?></div>
+
 
    
 <?php get_footer(); ?>

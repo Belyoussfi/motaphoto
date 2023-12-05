@@ -6,6 +6,8 @@ function my_css() {
 	wp_enqueue_script( 'custom-script', get_template_directory_uri(). '/js/ajax.js', array('jquery') );
 	wp_register_style('googlFonts', '//fonts.googleapis.com/css2?family=Space+Mono&display=swap', array(), null);
     wp_enqueue_style('googlFonts');
+	wp_register_style('poppinsFont','//fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap', array(), null);
+	wp_enqueue_style('poppinsFont');
 }
 add_action( 'wp_enqueue_scripts', 'my_css' );  
 
@@ -17,13 +19,13 @@ register_nav_menus( array(
 ) );
 
 // TAILLES IMAGES
-function wpdocs_setup_theme() {
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 'small', 150, 150 );
-	set_post_thumbnail_size( 'large', 1100, 1100 );
-	set_post_thumbnail_size( 'medium', 500, 500 );
-}
-add_action( 'after_setup_theme', 'wpdocs_setup_theme' );
+// function wpdocs_setup_theme() {
+// 	add_theme_support( 'post-thumbnails' );
+// 	set_post_thumbnail_size( 'small', 150, 150 );
+// 	set_post_thumbnail_size( 'large', 1100, 1100 );
+// 	set_post_thumbnail_size( 'medium', 700, 700 );
+// }
+// add_action( 'after_setup_theme', 'wpdocs_setup_theme' );
 
 
 //HOOK LOAD MORE BUTTON
@@ -60,8 +62,31 @@ function codex_load_more_post_ajax_call_back(){
 		while ( $the_query->have_posts()) { $the_query->the_post();
 			?>
 			<div class="cxc-inner-wrapper">
-				<p><a href="<?php the_permalink(); ?>"><?php echo the_post_thumbnail('medium'); ?></a></p>
-			</div>
+				<div class="first-content">
+
+					<span class="thumbnail-container" data-full-screen-image="<?php echo the_post_thumbnail_url(''); ?>">
+					    <?php echo the_post_thumbnail(); ?> 
+				    </span>
+
+				    <a class="image" href="<?php the_permalink(); ?>">
+				        <img class="oeil" src="<?php echo get_template_directory_uri(); ?>/img/eye.png" alt="image d'un oeil">
+
+				        <span class="title">
+						    <?php echo the_title(); ?>
+					    </span>
+
+				        <?php $terms = get_the_terms(get_the_ID(), 'categorie'); ?>
+
+				        <span class="category">
+							<?php echo ($terms[0]->name); ?>
+					    </span>	
+
+					    <img class="ecran" src="<?php echo get_template_directory_uri(); ?>/img/plein-ecran.png" alt="image d'un plein écran">	
+			        </a>
+				
+			    </div>	
+            </div>
+
 			<?php
 		}
 	} 
@@ -78,13 +103,15 @@ function codex_load_more_post_ajax_call_back(){
 add_action('wp_ajax_filter_posts', 'filter_posts');
 add_action('wp_ajax_nopriv_filter_posts', 'filter_posts');
 
+
+
 function filter_posts() {
+    
 	$test = [
 		'post_type' => 'photos_evenements',
 		'posts_per_page' => -1,
 		'orderby' => 'date', // we will sort posts by date
 		'order'	=> $_POST['date'] // ASC or DESC
-
 	];
 	
 	$type = $_REQUEST['cat'];
@@ -104,29 +131,55 @@ function filter_posts() {
 			'field' => 'slug',
 			'terms' => $format,
 		];
-	}
-	
+	} 
+
 	$photos = new WP_Query($test);
 	if($photos->have_posts()):
 		while ($photos->have_posts()): $photos->the_post(); ?>
-		<div class="cxc-inner-wrapper">
-			<p><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium'); ?></a></p>
-	    </div>
+
+        <div class="cxc-inner-wrapper">
+			<div class="first-content">
+
+				<span class="thumbnail-container" data-full-screen-image="<?php echo the_post_thumbnail_url(''); ?>">
+					<?php echo the_post_thumbnail(); ?> 
+				</span>
+
+				<a class="image" href="<?php the_permalink(); ?>">
+				    <img class="oeil" src="<?php echo get_template_directory_uri(); ?>/img/eye.png" alt="image d'un oeil">
+
+				    <span class="title">
+						<?php echo the_title(); ?>
+					</span>
+
+				    <?php $terms = get_the_terms(get_the_ID(), 'categorie'); ?>
+
+				    <span class="category">
+						<?php echo ($terms[0]->name); ?>
+					</span>	
+
+					<img class="ecran" src="<?php echo get_template_directory_uri(); ?>/img/plein-ecran.png" alt="image d'un plein écran">	
+			    </a>
+				
+			</div>		
+        </div>
+			
 	<?php  endwhile;
 	wp_reset_postdata();
 	else:
 		echo "POST NOT FOUND";
     endif;
 	wp_die();
-}
+} 
 
 
-// POST DE MEME CATEGORIE
+
+// POST DE MEME CATEGORIE - SINGLE PAGE
 function example_cats_related_post() {
 	$post_id = get_the_ID();
 	$cat_ids = array();
 	global $post;
 	$categories = get_the_terms( $post->ID, 'categorie' );
+	
 	
 	if(!empty($categories) && !is_wp_error($categories)):
 		foreach ($categories as $category):
@@ -147,16 +200,40 @@ function example_cats_related_post() {
 			],
 		],
 	);
+	
 
 	$related_cats_post = new WP_Query($query_args);
 
 	if($related_cats_post->have_posts()):
 		while($related_cats_post->have_posts()): $related_cats_post->the_post(); ?>
-		<ul>
-			<li>
-				<?php the_post_thumbnail('medium'); ?>
-			</li>
-		</ul>
+		
+		<div class="cxc-inner-wrapper">
+			<div class="first-content">
+
+				<span class="thumbnail-container" data-full-screen-image="<?php echo the_post_thumbnail_url(''); ?>">
+					<?php echo the_post_thumbnail(); ?> 
+				</span>
+
+				<a class="image" href="<?php the_permalink(); ?>">
+				    <img class="oeil" src="<?php echo get_template_directory_uri(); ?>/img/eye.png" alt="image d'un oeil">
+
+				    <span class="title">
+						<?php echo the_title(); ?>
+					</span>
+
+				    <?php $terms = get_the_terms(get_the_ID(), 'categorie'); ?>
+
+				    <span class="category">
+						<?php echo ($terms[0]->name); ?>
+					</span>	
+
+					<img class="ecran" src="<?php echo get_template_directory_uri(); ?>/img/plein-ecran.png" alt="image d'un plein écran">	
+			    </a>
+				
+			</div>	
+        </div>	
+
+
 		<?php endwhile;
 		wp_reset_postdata();
 	endif;
@@ -168,9 +245,9 @@ function example_cats_related_post() {
 function wpb_posts_nav(){
     $next_post = get_next_post();
     $prev_post = get_previous_post();
-      
+     
     if ( $next_post || $prev_post ) : ?>
-      
+     
         <div class="wpb-posts-nav">
             <div>
                 <?php if ( ! empty( $prev_post ) ) : ?>
@@ -180,11 +257,6 @@ function wpb_posts_nav(){
                                 <?php echo get_the_post_thumbnail( $prev_post, [ 100, 100 ] ); ?>
                             </div>
                         </div>
-                        <div>
-                            <strong>
-                                <svg viewBox="0 0 24 24" width="24" height="24"><path d="M13.775,18.707,8.482,13.414a2,2,0,0,1,0-2.828l5.293-5.293,1.414,1.414L9.9,12l5.293,5.293Z"/></svg>
-                            </strong>
-                        </div>
                     </a>
                 <?php endif; ?>
             </div>
@@ -192,16 +264,14 @@ function wpb_posts_nav(){
                 <?php if ( ! empty( $next_post ) ) : ?>
                     <a href="<?php echo get_permalink( $next_post ); ?>">
                         <div>
-                            <strong>
-                                <svg viewBox="0 0 24 24" width="24" height="24"><path d="M10.811,18.707,9.4,17.293,14.689,12,9.4,6.707l1.415-1.414L16.1,10.586a2,2,0,0,1,0,2.828Z"/></svg>
-                            </strong>
+                            <div class="wpb-posts-nav__thumbnail wpb-posts-nav__next">
+                                <?php echo get_the_post_thumbnail( $next_post, [ 100, 100 ] ); ?>
+                            </div>
                         </div>
                     </a>
                 <?php endif; ?>
             </div>
         </div> <!-- .wpb-posts-nav -->
-      
+     
     <?php endif;
 }
-
-// TEST LIGHTBOX
