@@ -62,6 +62,9 @@ form {
 	width: 440px;
 	margin: auto;
 }
+form label {
+	font-family: poppins;
+}
 form p {
 	width: 330px;
 }
@@ -145,13 +148,13 @@ input[type="submit"] {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	margin-top: 2.3em;
-	
 }
 .cxc-inner-wrapper {
 	margin-bottom: 1.5em;
-	width: 710px;
+	width: 715px;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	overflow: hidden;
 }
 
 /* CHANGER LE BG DU LOAD MORE BUTTON CAR AUCUNE IMG A CHARGER */
@@ -404,19 +407,17 @@ a:hover > .oeil, a:hover > .ecran, a:hover > .category, a:hover > .title  {
 	justify-content: space-between;
 	position: relative;
 }
-
+/* CSS POST MEME CATEGORIE SINGLE PAGE */
 .post_related {
 	margin-top: 3em;
 	display: flex;
 	flex-direction: column;
 }
-
 .post_related .last_container{
 	margin-top: 3em;
 	display: flex;
 	justify-content: space-between;
 }
-
 .btn_photos {
 	display: flex;
 	justify-content: center;
@@ -526,6 +527,9 @@ a:hover > .oeil, a:hover > .ecran, a:hover > .category, a:hover > .title  {
 		flex-direction: column;
 		align-items: flex-start;
 	}
+	.js-filter select {
+		width: 180px;
+	}
 	/* RECENTRER LES ELEMENTS EN POSITION ABSOLUTE IMG CONTENEUR */
 	.oeil, .ecran, .category, .title{
 		top: 0;
@@ -623,6 +627,9 @@ a:hover > .oeil, a:hover > .ecran, a:hover > .category, a:hover > .title  {
 	}
 	.modal {
 		overflow: hidden;
+	}
+	.wpcf7 {
+		background-color: white;
 	}
 	
 }

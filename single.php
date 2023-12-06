@@ -63,31 +63,24 @@ $format = get_the_terms(get_the_ID(), 'format');
 
     <section class="post_related">
         <span>VOUS AIMEREZ AUSSI</span>
-        <div class="last_container"><?php example_cats_related_post() ?></div>
-
+        <div class="last_container"><?php example_cats_related_post() ?></div> <!-- PHOTOS MEME CATEGORIE -->
+         
+        <!--LIGHTBOX -->
         <div class="lightbox" id="lightbox">
-   
-	<button class="lightbox_close">X</button>
-	<button class="lightbox_next" id="lightbox_next"></button>
-	<button class="lightbox_prev"></button>
-	<div class="lightbox_container">
-	    <img id="lightbox-img" src="">
-	</div>
-	
-</div>	
+            <button class="lightbox_close">X</button>
+            <button class="lightbox_next" id="lightbox_next"></button>
+            <button class="lightbox_prev"></button>
+            <div class="lightbox_container">
+                <img id="lightbox-img" src="">
+	        </div>
+        </div>	
        
     </section>
 
     <div class="btn_photos"><button class="btn_contact">Toutes les photos</button></div>
    
-
-
-
 </main>    
-<!--</section>  -->  
 
 
-
-   
 <?php get_footer(); ?>
 

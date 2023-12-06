@@ -18,15 +18,6 @@ register_nav_menus( array(
 	'footer' => 'Footer Menu',
 ) );
 
-// TAILLES IMAGES
-// function wpdocs_setup_theme() {
-// 	add_theme_support( 'post-thumbnails' );
-// 	set_post_thumbnail_size( 'small', 150, 150 );
-// 	set_post_thumbnail_size( 'large', 1100, 1100 );
-// 	set_post_thumbnail_size( 'medium', 700, 700 );
-// }
-// add_action( 'after_setup_theme', 'wpdocs_setup_theme' );
-
 
 //HOOK LOAD MORE BUTTON
 add_action( 'wp_enqueue_scripts', 'cxc_theme_enqueue_script_style' );
