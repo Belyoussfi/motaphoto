@@ -43,13 +43,6 @@ refField.setAttribute('value', refValue);
 });  
 
 
-  // FUNCTION CAT AND REF FIELD
-  
-    
-  
-  
-
-
 function lightboxInit() {
 // BTN LIGHTBOX_CLOSE MODAL
 jQuery(function(){

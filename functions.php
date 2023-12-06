@@ -252,7 +252,7 @@ function wpb_posts_nav(){
             <div>
                 <?php if ( ! empty( $prev_post ) ) : ?>
                     <a href="<?php echo get_permalink( $prev_post ); ?>">
-                        <div>
+                        <div class="nav_img_link">
                             <div class="wpb-posts-nav__thumbnail wpb-posts-nav__prev">
                                 <?php echo get_the_post_thumbnail( $prev_post, [ 100, 100 ] ); ?>
                             </div>
@@ -263,7 +263,7 @@ function wpb_posts_nav(){
             <div>
                 <?php if ( ! empty( $next_post ) ) : ?>
                     <a href="<?php echo get_permalink( $next_post ); ?>">
-                        <div>
+                        <div class="nav_img_link">
                             <div class="wpb-posts-nav__thumbnail wpb-posts-nav__next">
                                 <?php echo get_the_post_thumbnail( $next_post, [ 100, 100 ] ); ?>
                             </div>

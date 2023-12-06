@@ -93,7 +93,7 @@ wp_reset_postdata(); ?>
 </div>
 
 
-
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
    
 	<button class="lightbox_close">X</button>
@@ -102,9 +102,6 @@ wp_reset_postdata(); ?>
 	<div class="lightbox_container">
 	    <img id="lightbox-img" src="">
 	</div>
-	<div class="reference-field" data-value="test"></div>
-	<div class="category-field" data-value="test"></div>
-	
 </div>	
 
 </main>    

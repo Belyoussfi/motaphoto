@@ -18,11 +18,12 @@ $format = get_the_terms(get_the_ID(), 'format');
 ?>
 </pre>
 
-<section class="main_container">
+<!--<section class="main_container">-->
+<main>    
     <div class="presentation">
-    <ul class="single_title">
-            <li><?php echo the_title(); ?>
-                <ul>
+        <div class="single_title">
+            <h1><?php echo the_title(); ?></h1>
+                <ul class="infos">
                     <li>Référence: <span class="reference"><?php the_field('référence', get_the_ID() ); ?></span></li>
                     <li>Catégorie: <?php echo ($terms[0]->name)  ?></li>
                     <li>Format: <?php echo ($format[0]->name)  ?></li>
@@ -30,17 +31,16 @@ $format = get_the_terms(get_the_ID(), 'format');
                     <li>Année: <?php echo get_the_date( 'Y',) ?></li>
                 </ul>
             </li> 
-        </ul>     
+        </div>     
 
         <div class="bloc_image">
-            <p><?php the_post_thumbnail('medium'); ?></p>
+            <?php the_post_thumbnail('medium'); ?>
         </div>
     </div>
 
     <section class="second_container">
         <section class="single_contact">
             <p>Cette photo vous intéresse ?</p>
-            
             <button class="click btn_contact">Contact</button>
         </section>
 
@@ -83,8 +83,8 @@ $format = get_the_terms(get_the_ID(), 'format');
 
 
 
-    
-</section>    
+</main>    
+<!--</section>  -->  
 
 
 
